@@ -95,9 +95,9 @@ struct Keys {
 }
 
 pub struct TokenValidator {
-    firebase_project_id: &'static str,
-    firebase_project_issuer: &'static str,
-    firebase_public_keys_jwk_url: &'static str,
+    pub firebase_project_id: &'static str,
+    pub firebase_project_issuer: &'static str,
+    pub firebase_public_keys_jwk_url: &'static str,
 }
 
 impl TokenValidator {
