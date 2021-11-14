@@ -1,2 +1,2 @@
-# firebase-auth-rs
-**firebase-auth-rs** is a simple library to validate JWT tokens from Firebase and deserialize the claims.
+# firebase-auth
+**firebase-auth** is a simple library to validate JWT tokens from Firebase and deserialize the claims.
