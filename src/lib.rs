@@ -95,16 +95,16 @@ struct Keys {
 }
 
 pub struct TokenValidator {
-    pub firebase_project_id: &'static str,
-    pub firebase_project_issuer: &'static str,
-    pub firebase_public_keys_jwk_url: &'static str,
+    pub firebase_project_id: String,
+    pub firebase_project_issuer: String,
+    pub firebase_public_keys_jwk_url: String,
 }
 
 impl TokenValidator {
     pub async fn validate(&self, token: &str) -> Result<FirebaseClaims, ValidationError> {
         let validation = Validation {
-            aud: Some(HashSet::from([self.firebase_project_id.to_string()])),
-            iss: Some(self.firebase_project_issuer.to_string()),
+            aud: Some(HashSet::from([self.firebase_project_id.clone()])),
+            iss: Some(self.firebase_project_issuer.clone()),
             ..Validation::new(Algorithm::RS256)
         };
 
@@ -115,7 +115,7 @@ impl TokenValidator {
         };
 
         let client = Client::default();
-        let mut response = client.get(self.firebase_public_keys_jwk_url.to_string()).send().await?;
+        let mut response = client.get(self.firebase_public_keys_jwk_url.clone()).send().await?;
         let keys = response.json::<Keys>().await?;
 
         for key in keys.keys {
