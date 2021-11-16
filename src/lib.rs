@@ -94,6 +94,7 @@ struct Keys {
     keys: Vec<HashMap<String, String>>,
 }
 
+#[derive(Clone)]
 pub struct TokenValidator {
     pub firebase_project_id: String,
     pub firebase_project_issuer: String,
